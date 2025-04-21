@@ -1,0 +1,172 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f6f6f6;
+    color: #333;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo h1 {
+    font-size: 24px;
+    color: #2b72e2;
+}
+
+.logo span {
+    color: #f5a623;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.login-button a {
+    background-color: #f5a623;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 100px;
+    background: linear-gradient(90deg, #fdf1d0 50%, #e7ebf5 50%);
+}
+
+.hero .content {
+    max-width: 50%;
+}
+
+.hero h2 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.hero p span {
+    font-weight: bold;
+    color: #333;
+}
+
+.shop-now-button {
+    background-color: #f5a623;
+    padding: 15px 30px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.hero .image img {
+    max-width: 100%;
+    height: auto;
+}
+/* Navbar Container */
+.navbar {
+    padding: 15px 20px;
+    font-family: 'Press Start 2P', cursive;
+    background-color: #111;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Brand Logo and Title */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.brand-title {
+    color: #ffcc00;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 5px #ff9900;
+}
+
+/* Nav Links */
+.nav-link {
+    color: #fff;
+    font-size: 1rem;
+    margin: 0 10px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #ff5722;
+}
+
+/* Active Link */
+.nav-link.active {
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+/* Signup Button */
+.btn-signup {
+    background: linear-gradient(45deg, #ff4500, #ff9900);
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.2s ease;
+    border: none;
+}
+
+.btn-signup:hover {
+    background: linear-gradient(45deg, #ff5722, #ffc107);
+    transform: scale(1.1);
+}
+
+/* Navbar Responsiveness */
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-color: #fff;
+    width: 25px;
+    height: 3px;
+    display: block;
+    margin: 5px 0;
+}

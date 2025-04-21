@@ -1,162 +1,81 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<div class="container" style="max-width: 500px; margin-top: 50px; background-color: #1a1a2e; border-radius: 15px; padding: 30px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);">
+    <h1 class="text-center mb-4" style="font-size: 36px; font-weight: bold; color: #e94560; text-shadow: 0 0 10px #e94560;">Sign Up</h1>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+    <form method="POST" action="{{ route('register') }}">
+        @csrf
 
-                        <!-- First Name -->
-                        <div class="row mb-3">
-                            <label for="first_name" class="col-md-4 col-form-label text-md-end">{{ __('First Name') }}</label>
-                            <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
-                                @error('first_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+        <div class="d-flex gap-3 w-100">
+            <!-- First Name -->
+            <div class="mb-3 w-100">
+                <label for="first_name" class="form-label" style="font-size: 16px; color: #c4c4c4;">Username</label>
+                <input id="first_name" type="text" class="form-control" name="first_name" required placeholder="Enter your first name" style="background-color: #0f3460; color: #fff; border: none;">
+            </div>
 
-                        <!-- Last Name -->
-                        <div class="row mb-3">
-                            <label for="last_name" class="col-md-4 col-form-label text-md-end">{{ __('Last Name') }}</label>
-                            <div class="col-md-6">
-                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name">
-                                @error('last_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- Phone Number -->
-                        <div class="row mb-3">
-                            <label for="phone_number" class="col-md-4 col-form-label text-md-end">{{ __('Phone Number') }}</label>
-                            <div class="col-md-6">
-                                <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
-                                @error('phone_number')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- Block Dropdown (A to F) -->
-                        <div class="row mb-3">
-                            <label for="course_bloc" class="col-md-4 col-form-label text-md-end">{{ __('Block') }}</label>
-                            <div class="col-md-6">
-                                <select id="course_bloc" class="form-control @error('course_bloc') is-invalid @enderror" name="course_bloc" required>
-                                    <option value="">{{ __('Select a Block') }}</option>
-                                    <option value="A" {{ old('course_bloc') == 'A' ? 'selected' : '' }}>A</option>
-                                    <option value="B" {{ old('course_bloc') == 'B' ? 'selected' : '' }}>B</option>
-                                    <option value="C" {{ old('course_bloc') == 'C' ? 'selected' : '' }}>C</option>
-                                    <option value="D" {{ old('course_bloc') == 'D' ? 'selected' : '' }}>D</option>
-                                    <option value="E" {{ old('course_bloc') == 'E' ? 'selected' : '' }}>E</option>
-                                    <option value="F" {{ old('course_bloc') == 'F' ? 'selected' : '' }}>F</option>
-                                </select>
-                                @error('course_bloc')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- Course Dropdown (This is the only field that pulls data from the courses table) -->
-                        <div class="row mb-3">
-                            <label for="course_id" class="col-md-4 col-form-label text-md-end">{{ __('Course') }}</label>
-                            <div class="col-md-6">
-                                <select id="course_id" class="form-control @error('course_id') is-invalid @enderror" name="course_id" required>
-                                    <option value="">{{ __('Select a Course') }}</option>
-                                    @foreach($courses as $course)
-                                        <option value="{{ $course->id }}" {{ old('course_id') == $course->id ? 'selected' : '' }}>
-                                            {{ $course->course_name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('course_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- Year Dropdown (1st to 5th year) -->
-                        <div class="row mb-3">
-                            <label for="year" class="col-md-4 col-form-label text-md-end">{{ __('Year') }}</label>
-                            <div class="col-md-6">
-                                <select id="year" class="form-control @error('year') is-invalid @enderror" name="year" required>
-                                    <option value="">{{ __('Select Year') }}</option>
-                                    <option value="1st" {{ old('year') == '1st' ? 'selected' : '' }}>1st Year</option>
-                                    <option value="2nd" {{ old('year') == '2nd' ? 'selected' : '' }}>2nd Year</option>
-                                    <option value="3rd" {{ old('year') == '3rd' ? 'selected' : '' }}>3rd Year</option>
-                                    <option value="4th" {{ old('year') == '4th' ? 'selected' : '' }}>4th Year</option>
-                                    <option value="5th" {{ old('year') == '5th' ? 'selected' : '' }}>5th Year</option>
-                                </select>
-                                @error('year')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- Email -->
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- Password -->
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- Confirm Password -->
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <!-- Last Name -->
+            <div class="mb-3 w-100">
+                <label for="last_name" class="form-label" style="font-size: 16px; color: #c4c4c4;">Full Name</label>
+                <input id="last_name" type="text" class="form-control" name="last_name" required placeholder="Enter your last name" style="background-color: #0f3460; color: #fff; border: none;">
             </div>
         </div>
-    </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="email" class="form-label" style="font-size: 16px; color: #c4c4c4;">Email</label>
+            <input id="email" type="email" class="form-control" name="email" required placeholder="Enter your email" style="background-color: #0f3460; color: #fff; border: none;">
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+            <label for="password" class="form-label" style="font-size: 16px; color: #c4c4c4;">Password</label>
+            <input id="password" type="password" class="form-control" name="password" required placeholder="Enter a strong password" style="background-color: #0f3460; color: #fff; border: none;">
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mb-3">
+            <label for="password_confirmation" class="form-label" style="font-size: 16px; color: #c4c4c4;">Confirm Password</label>
+            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required placeholder="Confirm your password" style="background-color: #0f3460; color: #fff; border: none;">
+        </div>
+
+        <!-- Favorite Game -->
+        <div class="mb-3">
+            <label for="favorite_game" class="form-label" style="font-size: 16px; color: #c4c4c4;">Favorite Game</label>
+            <input id="favorite_game" type="text" class="form-control" name="favorite_game" placeholder="What's your favorite game?" style="background-color: #0f3460; color: #fff; border: none;">
+        </div>
+
+        <!-- Gaming Level -->
+        <div class="mb-3">
+            <label for="gaming_level" class="form-label" style="font-size: 16px; color: #c4c4c4;">Gaming Level</label>
+            <select id="gaming_level" class="form-control" name="gaming_level" style="background-color: #0f3460; color: #fff; border: none;">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="pro">Pro</option>
+            </select>
+        </div>
+
+        <!-- Terms and Conditions -->
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="terms" required>
+            <label class="form-check-label" for="terms" style="color: #c4c4c4;">I agree to the <a href="#" style="color: #e94560;">Terms and Conditions</a>.</label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn" style="width: 100%; background: linear-gradient(90deg, #e94560, #0f3460); color: #fff; font-weight: bold; font-size: 16px;">Sign Up</button>
+        <a href="{{ route('login') }}" class="btn" style="width: 100%; border: 2px solid #e94560; color: #e94560; font-weight: bold;">Sign Up</a>
+
+        <!-- Divider -->
+        <div class="text-center py-3">
+            <hr class="flex-grow-1 m-0" style="border-top: 1px solid #c4c4c4;">
+            <span style="font-size: 14px; color: #c4c4c4; padding: 0 10px;">OR</span>
+            <hr class="flex-grow-1 m-0" style="border-top: 1px solid #c4c4c4;">
+        </div>
+
+        <!-- Log in Link -->
+        <div class="text-center">
+            <a href="{{ route('login') }}" class="btn" style="width: 100%; border: 2px solid #e94560; color: #e94560; font-weight: bold;">Log In</a>
+        </div>
+    </form>
 </div>
 @endsection

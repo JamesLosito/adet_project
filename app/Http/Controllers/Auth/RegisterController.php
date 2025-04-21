@@ -3,34 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use App\Models\Course; // Add this line to import the Course model
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules;
 
 class RegisterController extends Controller
 {
-    use RegistersUsers;
-
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
-
     /**
      * Show the registration form.
      *
@@ -38,47 +17,41 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $courses = Course::all(); // Fetch all courses
-        return view('auth.register', compact('courses')); // Pass to the view
+        return view('auth.register');
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Handle a registration request for the application.
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    protected function validator(array $data)
+    public function register(Request $request)
     {
-        return Validator::make($data, [
+        // Validate the form data
+        $validated = $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'phone_number' => ['required', 'string', 'max:15'],
-            'course_bloc' => ['required', 'in:A,B,C,D,E,F'], 
-            'course_id' => ['required', 'exists:courses,id'],
-            'year' => ['required', 'in:1st,2nd,3rd,4th,5th'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'favorite_game' => ['nullable', 'string', 'max:255'],
+            'gaming_level' => ['required', 'in:beginner,intermediate,pro'],
         ]);
-    }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'phone_number' => $data['phone_number'],
-            'course_bloc' => $data['course_bloc'],
-            'course_id' => $data['course_id'],
-            'year' => $data['year'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        // Create the user
+        $user = User::create([
+            'first_name' => $validated['first_name'],
+            'last_name' => $validated['last_name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'favorite_game' => $validated['favorite_game'] ?? null,
+            'gaming_level' => $validated['gaming_level'],
         ]);
+
+        // Log in the user automatically (optional)
+        auth()->login($user);
+
+        // Redirect to a specific route
+        return redirect()->route('welcome')->with('success', 'Registration successful!');
     }
 }

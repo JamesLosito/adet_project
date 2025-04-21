@@ -11,3 +11,5 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
+$products = \App\Models\Product::all();
+return view('bestseller', compact('products'));

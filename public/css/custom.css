@@ -58,3 +58,121 @@
         height: 16px;
     }
 }
+  /* Global Styling */
+        body {
+            font-family: 'Satoshi', Arial, sans-serif;
+            background-color: #0d1117;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            flex-shrink: 0;
+            z-index:1000 ;
+            position: relative;
+        }
+
+        .contact-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            background-color: #081c32;
+        }
+
+        .contact-container h1 {
+            font-family: 'Press Start 2P', cursive;
+            color: #ffcc00;
+            text-shadow: 2px 2px 8px #ff9900;
+            margin-bottom: 15px;
+        }
+
+        .contact-container p {
+            font-size: 1.1rem;
+            color: #ccc;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            width: 100%;
+            max-width: 500px;
+            background-color: #0b2035;
+            padding: 30px;
+            border-radius: 10px;
+            border-color: #ccc;
+            box-shadow: 0 4px 15px rgba(162, 158, 174, 0.3);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #f0f0f0;
+            margin-bottom: 8px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #0d1117;
+            color: #fff;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            background-color: #ff4500;
+            color: white;
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #ff5722;
+            box-shadow: 0 0 10px #ff5722;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 40px;
+            color: #ccc;
+        }
+
+        .contact-info h2 {
+            font-family: 'Press Start 2P', cursive;
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p, .contact-info a {
+            color: #ccc;
+        }
+
+        .contact-info a:hover {
+            color: #ffcc00;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 5px 0;
+        }
