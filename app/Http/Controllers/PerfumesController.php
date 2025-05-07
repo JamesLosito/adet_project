@@ -11,6 +11,11 @@ class PerfumesController extends Controller
      * Create a new controller instance.
      */
     use App\Models\Product;
+    public function index()
+    {
+        $products = Product::all(); // or paginate if needed
+        return view('perfumes.index', compact('products'));
+    }
 
     public function perfumes()
     {

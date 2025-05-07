@@ -87,12 +87,28 @@
                     <a class="nav-link" href="{{ url('/contact') }}">CONTACT US</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link" href="#">SIGN IN</a>
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#authModal">LOGIN</a>
                 </li>
+
             </ul>
         </div>
     </nav>
-
+        <!-- Login/Signup Modal -->
+        <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="authModalLabel">Welcome</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Please choose an option:</p>
+                <a href="{{ url('/login') }}" class="btn btn-primary m-2">Login</a>
+                <a href="{{ url('/signup') }}" class="btn btn-secondary m-2">Signup</a>
+            </div>
+            </div>
+        </div>
+        </div>
     <!-- Hero Section -->
     <div class="container mt-4">
         <img src="{{ asset('images/perfume.jpg') }}" class="hero-img" alt="Metro Essence Banner">
