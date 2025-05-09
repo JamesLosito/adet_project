@@ -47,6 +47,24 @@
         }
         .btn-captivating { background-color: #6f42c1; color: white; }
         .btn-intense { background-color: #343a40; color: white; }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #333;
+            transition: color 0.4s ease;
+        }
+        h1:hover {
+            color: #6f42c1;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        p{
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -71,6 +89,20 @@
             </ul>
         </div>
     </nav>
+
+    <h1>About Us</h1>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ asset('images/aboutus.jpeg') }}" alt="About Us" class="img-fluid hero-img">
+            </div>
+            <div class="col-md-6">
+                <h2 class="section-title">Who We Are</h2>
+                <p>Metro Essence is a leading perfume company dedicated to creating captivating fragrances that inspire and evoke emotions. Our passion for scent drives us to craft unique blends that resonate with our customers.</p>
+                <h2 class="section-title">Our Mission</h2>
+                <p>We aim to provide high-quality perfumes that enhance personal expression and confidence. Our commitment to excellence ensures that every bottle reflects our dedication to quality and craftsmanship.</p>
+            </div>
+        </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
